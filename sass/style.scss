@@ -1,0 +1,450 @@
+@import "fonts";
+@import "vars";
+@import "utils";
+
+// main styling
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $default-font;
+
+  // hide horizontal scrollbars
+  overflow-x: hidden;
+}
+
+img {
+  // fix blurry images on Chrome
+  image-rendering: -webkit-optimize-contrast;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: $light-color;
+}
+
+// all nav bars
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: $dark-color;
+
+  &#navbar-home {
+    background: transparent;
+  }
+
+  // flex container, global-container
+  &-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+
+    .logo {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &-img {
+        height: 48px;
+        margin-right: 0.5rem;
+      }
+
+      &-text {
+        h1 {
+          font-family: $vintage-font;
+          font-size: 2.5rem;
+          font-weight: normal;
+          color: $light-color;
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+
+      a {
+        // space between links
+        margin-left: 1.5rem;
+
+        // space to underline
+        padding: 0.5rem;
+
+        // border for underline
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          color: $primary-color;
+        }
+
+        &.current {
+          border-color: $light-color;
+
+          &:hover {
+            border-color: $primary-color;
+          }
+        }
+
+        // color transition
+        transition: color $anim-speed ease, border-color $anim-speed ease;
+      }
+    }
+  }
+}
+
+// footer
+#footer {
+  color: $light-color;
+  background: $dark-color;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    line-height: 1.7;
+    padding: 1rem 0;
+
+    .social {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      i {
+        padding: 0 1rem;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// page: index.html
+// showcase
+#showcase {
+  height: 100vh;
+  background: url("../img/bg.jpg") no-repeat center center / cover;
+  position: relative;
+
+  // overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparentize($dark-color, 0.3);
+  }
+
+  // heading & button
+  &-content {
+    // bring on top of overlay
+    position: relative;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    h1 {
+      padding: 0 2rem;
+    }
+
+    .lead {
+      color: $light-color;
+      font-weight: 100;
+      line-height: 1.6;
+    }
+  }
+}
+
+// page: services.html
+// section: services
+#section-services {
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// section: pricing
+#section-pricing {
+  // align cards
+  .section-body {
+    display: flex;
+    padding: 0 $card-spacing;
+
+    .card {
+      // space between cards
+      margin: 0 $card-spacing;
+
+      // outline
+      outline: 3px solid;
+      outline-offset: -1rem;
+
+      // card height & selection inside border
+      padding: 4rem 1rem;
+
+      // card colors
+      &:nth-child(odd) {
+        background: $dark-color;
+        color: $primary-color;
+
+        // border & outline
+        outline-color: $primary-color;
+
+        // hover on line
+        .line:hover {
+          background: darken($dark-color, 3%);
+        }
+      }
+
+      &:nth-child(even) {
+        background: $primary-color;
+        color: $dark-color;
+
+        // border & outline
+        outline-color: $dark-color;
+
+        // hover on line
+        .line:hover {
+          background: darken($primary-color, 6%);
+        }
+      }
+
+      // flex: head & body
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      // scale transition
+      transition: transform $anim-speed $anim-curve;
+
+      // card hover
+      &:hover {
+        cursor: default;
+        transform: scale($scale-factor);
+      }
+
+      // head & body spacing
+      &-head {
+        padding-bottom: 2rem;
+      }
+
+      // flex: lines
+      &-body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .line {
+          width: 100%;
+          text-align: center;
+
+          // card width
+          padding: 1rem;
+
+          // transition hover
+          transition: background 200ms ease;
+
+          // service: price spacing
+          word-spacing: 0.5rem;
+
+          dt,
+          dd {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+// section: brands
+#section-brands {
+  .brand {
+    width: 100%;
+    height: auto;
+    transition: transform $anim-speed $anim-curve;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  // align brands
+  .section-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+
+    .brand {
+      width: 250px;
+    }
+  }
+}
+
+// page: contact.html
+// section: address
+#section-contact {
+  .section-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .contact-info {
+      // icon & text flex
+      .contact-group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        i {
+          color: $primary-color;
+          // space between icon and text
+          margin-right: 2rem;
+        }
+        // spacing between groups
+        padding: 1rem 0;
+
+        // border between groups
+        border-bottom: 1px dashed;
+        border-color: lighten($dark-color, 50%);
+
+        // animation
+        transition: transform $anim-speed $anim-curve;
+        &:hover {
+          cursor: default;
+          transform: scale($scale-factor);
+        }
+      }
+    }
+
+    .contact-img {
+      height: 300px;
+    }
+  }
+}
+
+// section: contact
+#section-form {
+  .section-body {
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .field {
+        outline: 2px solid transparent;
+        border: 1px solid $dark-color;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        padding: 0.5rem;
+
+        width: 550px;
+        font-family: $default-font;
+
+        &:focus {
+          outline: 2px solid $primary-color;
+          border-color: transparent;
+        }
+      }
+
+      textarea {
+        resize: none;
+      }
+    }
+  }
+}
+
+// page: about.html
+// section: history
+#section-history {
+  .section-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .history-info {
+      width: 50%;
+      .lead {
+        width: 100%;
+        text-align: left;
+
+        // remove bottom margin on last element
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .history-img {
+      width: 300px;
+
+      img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $dark-color;
+      }
+    }
+  }
+}
+
+#section-team {
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .team-img {
+      width: 800px;
+      margin-bottom: 2rem;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+#section-clients {
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// media queries
+@import "media";

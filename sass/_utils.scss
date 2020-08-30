@@ -1,0 +1,196 @@
+// double function
+@function double($value) {
+  @return 2 * $value;
+}
+
+// max site width
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: center;
+}
+
+// section template
+.section {
+  &.top {
+    padding-top: double($section-padding);
+  }
+
+  &.bottom {
+    border-bottom: none;
+  }
+
+  border-bottom: 3px solid darken($light-color, 12%);
+
+  // top & bottom spacing
+  padding: $section-padding 0;
+  text-align: center;
+
+  // section container
+  .container {
+    overflow: visible;
+  }
+
+  // full section
+  &.full {
+    .container {
+      max-width: inherit;
+      padding: 0;
+    }
+  }
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+// headings
+%heading {
+  font-family: $heavy-font;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.heading {
+  &-xl {
+    @extend %heading;
+    font-size: 4rem;
+    font-weight: 900;
+    color: $light-color;
+    line-height: 1.4;
+
+    // bottom spacing
+    margin-bottom: 0.5rem;
+  }
+
+  &-l {
+    @extend %heading;
+    font-size: 3rem;
+    font-weight: 900;
+    color: $black-color;
+
+    // border underline
+    padding-bottom: 0.5rem;
+    border-bottom: 8px solid $black-color;
+
+    // bottom spacing
+    margin-bottom: 1.5rem;
+  }
+
+  &-s {
+    @extend %heading;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $black-color;
+    margin-bottom: 0.5rem;
+  }
+
+  &-card,
+  &-m {
+    @extend %heading;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  &-card {
+    // border spacing
+    padding: 0.2rem 0;
+
+    border-width: 5px 0 5px 0;
+    border-color: inherit;
+    border-style: solid;
+  }
+}
+
+// paragraphs
+.info,
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.lead {
+  text-align: center;
+  width: $inner-width;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+// icon
+.icon {
+  font-size: 4rem;
+  display: block;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+// buttons
+%btn {
+  padding: 1rem 3rem;
+  font-size: 1.125rem;
+  border: none;
+
+  // hover
+  transition: color $anim-speed ease, background-color $anim-speed ease;
+}
+
+// button template
+.btn {
+  &-primary,
+  &-light:hover,
+  &-dark:hover {
+    @extend %btn;
+    background: $primary-color;
+    color: $dark-color;
+  }
+
+  &-dark {
+    @extend %btn;
+    background: $dark-color;
+    color: $light-color;
+  }
+
+  &-light,
+  &-primary:hover {
+    @extend %btn;
+    background: $light-color;
+    color: $dark-color;
+  }
+}
+
+// item group for services and clients
+.item-group {
+  // group width
+  width: $inner-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  // border between groups
+  border-bottom: 1px dashed;
+  border-color: lighten($dark-color, 50%);
+
+  // space between groups
+  padding: 1.5rem 0;
+
+  // scale on hover
+  transition: transform $anim-speed $anim-curve;
+
+  &:hover {
+    cursor: default;
+    transform: scale($scale-factor);
+  }
+
+  .item-img {
+    height: 150px;
+
+    // space to text
+    margin-right: 2rem;
+  }
+
+  .item-info {
+    text-align: left;
+  }
+}

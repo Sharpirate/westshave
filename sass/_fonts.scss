@@ -1,0 +1,44 @@
+// Smythe
+@import url("https://fonts.googleapis.com/css2?family=Smythe&display=swap");
+
+// Inter
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+// Barber Icons
+@font-face {
+  font-family: "BarberIcons";
+  src: url("../fonts/BarberIcons.eot?acpd7j");
+  src: url("../fonts/BarberIcons.eot?acpd7j#iefix") format("embedded-opentype"),
+    url("../fonts/BarberIcons.ttf?acpd7j") format("truetype"),
+    url("../fonts/BarberIcons.woff?acpd7j") format("woff"),
+    url("../fonts/BarberIcons.svg?acpd7j#BarberIcons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="barber-"],
+[class*=" barber-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "BarberIcons" !important;
+  // speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.barber-bottle:before {
+  content: "\e901";
+}
+.barber-razor:before {
+  content: "\e900";
+}
+.barber-scissors:before {
+  content: "\e905";
+}
